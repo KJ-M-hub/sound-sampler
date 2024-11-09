@@ -11,7 +11,7 @@
     <div class="wrapper">
 
       <header>
-        <h1>Web dictaphone</h1>
+        <h1>SoundSampler</h1>
       </header>
 
       <section class="main-controls">
