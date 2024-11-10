@@ -7,8 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', [App\Http\Controllers\TestController::class, 'test'])
-    ->name('test');
+Route::get('/main', [App\Http\Controllers\SoundSamplerController::class, 'main'])
+->middleware(['auth', 'verified'])->name('main');
+
+Route::get('/recording', [App\Http\Controllers\SoundSamplerController::class, 'recording'])
+    ->name('recording');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

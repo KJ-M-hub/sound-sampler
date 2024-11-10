@@ -3,12 +3,36 @@
 
     <x-slot name="slot" class="">
         <div class="min-h-screen flex flex-col">
-            <header class="bg-white dark:bg-gray-400 shadow">
-                <div class="max-w-7xl mx-auto py-1 px-1 sm:px-6 lg:px-8 text-2xl md:text-6xl text-center">
-                    SoundSampler
+
+            {{-- header --}}
+            <header class="bg-white dark:bg-gray-400 shadow flex justify-between items-center px-4">
+                <div class="flex-grow text-center">
+                    <div class="max-w-7xl mx-auto py-1 px-1 sm:px-6 lg:px-8 text-2xl md:text-6xl text-center">
+                        SoundSampler
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <x-dropdown-link :href="route('profile.edit')" class="w-1/2">
+                        {{ __('Profile') }}
+                    </x-dropdown-link>
+
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
                 </div>
             </header>
+
+            {{-- main content --}}
             <div class="flex-grow">
+
+
                 {{-- sound button --}}
                 <div class="grid grid-cols-2 gap-4 place-items-stretch">
 
