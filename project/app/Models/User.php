@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'sound_id',
+        'playlist_id',
     ];
 
     /**
@@ -44,5 +46,14 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function sounds()
+    {
+        return $this->hasMany(Sound::class);
+    }
+
+    public function playlist() {
+        return $this->belongsTo(Playlist::class);
     }
 }

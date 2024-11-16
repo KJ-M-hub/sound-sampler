@@ -28,7 +28,7 @@
       </section>
 
     </div>
-    <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('js/recording.js')}}"></script>
 
   </body>
 </html>
