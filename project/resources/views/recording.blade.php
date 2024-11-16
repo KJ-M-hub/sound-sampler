@@ -8,24 +8,19 @@
   </head>
   <body>
 
-    <div class="wrapper">
+    <div class="wrapper pt-24">
 
-      <header>
-        <h1>SoundSampler</h1>
-      </header>
+      
 
       <section class="main-controls">
         <canvas class="visualizer" height="60px"></canvas>
         <div id="buttons">
-          <button class="record">Record</button>
-          <button class="stop">Stop</button>
+          <button class="record mr-8">Record</button>
+          <button class="stop ml-8">Stop</button>
         </div>
       </section>
 
-      <section class="sound-clips">
-
-
-      </section>
+      <section class="sound-clips p-1"></section>
 
     </div>
     <script src="{{asset('js/recording.js')}}"></script>

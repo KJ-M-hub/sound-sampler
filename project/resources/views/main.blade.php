@@ -3,12 +3,15 @@
 
     <x-slot name="slot" class="">
         {{-- modal window --}}
-        <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border invisible">
+        <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border //invisible">
             <div id="modal-container" class="relative inline-block align-middle top-1/2 -translate-y-1/2 w-full h-full pt-10">
-            <div id="modal-close" class="z-10 absolute flex justify-center top-8 right-12 text-3xl">×</div>
-            <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-white  rounded-md">
-                @include('recording') <!-- recording.blade.phpの内容を挿入 -->
-            </div>
+                
+                <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-white  rounded-md">
+                    <div id="modal-close" class="z-10 absolute flex right-3 text-3xl cursor-pointer">×</div>
+                    <div class="p-2">
+                        @include('recording')
+                    </div>
+                </div>
             </div>
         </div>
         <div class="min-h-screen flex flex-col">
@@ -131,12 +134,12 @@
         {{-- footer --}}
         <footer class="flex justify-between border p-1 ">
             <div class="flex-1 flex justify-end pr-12 sm:pr-24">
-                <a id="open-modal">
+                <a id="open-modal" class="cursor-pointer">
                     <img src="{{ asset('Pasted Graphic.png') }}" class="w-14 h-auto md:w-24 " alt="Description of image">
                 </a>
             </div>
             <div class="flex-1 flex justify-start pl-12 sm:pl-24">
-                <a>
+                <a class="cursor-pointer">
                     <img src="{{ asset('Pasted Graphic 2.png') }}" class="w-14 h-auto md:w-24 " alt="Description of image">
                 </a>
             </div>

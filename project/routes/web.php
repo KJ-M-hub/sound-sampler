@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SoundSamplerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,9 +12,10 @@ Route::get('/main', [App\Http\Controllers\SoundSamplerController::class, 'main']
 ->middleware(['auth', 'verified'])->name('main');
 
 Route::get('/recording', [App\Http\Controllers\SoundSamplerController::class, 'recording'])
-    ->name('recording');
+->name('recording');
 
-
+Route::post('/save-sound', [SoundSamplerController::class, 'saveSound'])
+->name('save-sound');
 
 
 

@@ -56,12 +56,18 @@ if (navigator.mediaDevices.getUserMedia) {
       const clipContainer = document.createElement("article");
       const clipLabel = document.createElement("p");
       const audio = document.createElement("audio");
+      const buttonContainer = document.createElement("div"); // ボタン用の親要素を作成
       const deleteButton = document.createElement("button");
+      const downloadButton = document.createElement("button"); // Downloadボタンを追加
 
       clipContainer.classList.add("clip");
       audio.setAttribute("controls", "");
-      deleteButton.textContent = "Delete";
+      audio.classList.add("w-full", "rounded"); // 追加
+      deleteButton.textContent = "削除"; // テキストを"削除"に変更
       deleteButton.className = "delete";
+      deleteButton.classList.add("mr-2","w-16","bg-red-400", "rounded"); // 追加
+      downloadButton.textContent = "保存"; // テキストを"保存"に変更
+      downloadButton.className = "download w-16 ml-4 bg-gray-300 rounded"; // クラスを追加
 
       if (clipName === null) {
         clipLabel.textContent = "My unnamed clip";
@@ -69,9 +75,14 @@ if (navigator.mediaDevices.getUserMedia) {
         clipLabel.textContent = clipName;
       }
 
+      // ボタン用の親要素にflexクラスを追加
+      buttonContainer.classList.add("flex", "justify-end", "mt-2"); // ボタンを右端に揃えるためのクラスを追加
+      buttonContainer.appendChild(deleteButton); // ボタンを追加
+      buttonContainer.appendChild(downloadButton); // Downloadボタンを追加
+
       clipContainer.appendChild(audio);
       clipContainer.appendChild(clipLabel);
-      clipContainer.appendChild(deleteButton);
+      clipContainer.appendChild(buttonContainer); // ボタン用の親要素を追加
       soundClips.appendChild(clipContainer);
 
       audio.controls = true;
@@ -91,6 +102,27 @@ if (navigator.mediaDevices.getUserMedia) {
         if (newClipName !== null && newClipName.trim() !== "") { // nullでなく、空でない場合
             clipLabel.textContent = newClipName;
         }
+      };
+
+      downloadButton.onclick = function () {
+        const formData = new FormData();
+        formData.append("clipName", clipName || "My unnamed clip");
+        formData.append("audioData", blob, `${clipName || "My unnamed clip"}.wav`);
+    
+        // サーバーにデータを送信
+        fetch('/save-sound', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('音声が保存されました。');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('音声の保存に失敗しました。');
+        });
       };
     };
 
