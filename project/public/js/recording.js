@@ -20,7 +20,15 @@ if (navigator.mediaDevices.getUserMedia) {
   let chunks = [];
 
   let onSuccess = function (stream) {
-    const mediaRecorder = new MediaRecorder(stream);
+    let options = {};
+    if (MediaRecorder.isTypeSupported('audio/wav')) {
+        options.mimeType = 'audio/wav';
+    } else if (MediaRecorder.isTypeSupported('audio/mp3')) {
+        options.mimeType = 'audio/mp3';
+    } else {
+        options.mimeType = 'audio/webm'; // デフォルトの形式
+    }
+    const mediaRecorder = new MediaRecorder(stream, options);
 
     visualize(stream);
 
@@ -87,6 +95,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
       audio.controls = true;
       const blob = new Blob(chunks, { type: mediaRecorder.mimeType });
+      console.log("Blob type:", blob.type); // 追加
       chunks = [];
       const audioURL = window.URL.createObjectURL(blob);
       audio.src = audioURL;
@@ -107,7 +116,7 @@ if (navigator.mediaDevices.getUserMedia) {
       downloadButton.onclick = function () {
         const formData = new FormData();
         formData.append("clipName", clipName || "My unnamed clip");
-        formData.append("audioData", blob, `${clipName || "My unnamed clip"}.wav`);
+        formData.append("audioData", blob, `${clipName || "My unnamed clip"}.webm`);
     
         // サーバーにデータを送信
         fetch('/save-sound', {
@@ -117,7 +126,7 @@ if (navigator.mediaDevices.getUserMedia) {
         })
         .then(async response => {
           if (!response.ok) {
-            const text = await response.text();  
+            const text = await response.text();
             throw new Error(text || response.statusText);
           }
           return response.json();
