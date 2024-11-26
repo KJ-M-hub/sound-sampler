@@ -112,16 +112,23 @@ if (navigator.mediaDevices.getUserMedia) {
         // サーバーにデータを送信
         fetch('/save-sound', {
             method: 'POST',
+            headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
             body: formData,
         })
-        .then(response => response.json())
+        .then(async response => {
+          if (!response.ok) {
+            const text = await response.text();  
+            throw new Error(text || response.statusText);
+          }
+          return response.json();
+        })
         .then(data => {
             console.log('Success:', data);
             alert('音声が保存されました。');
         })
         .catch((error) => {
             console.error('Error:', error);
-            alert('音声の保存に失敗しました。');
+            alert('音声の保存に失敗しました。' + error.message);
         });
       };
     };

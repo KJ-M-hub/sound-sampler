@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <title>Web dictaphone</title>
     <link href="styles/app.css" rel="stylesheet" type="text/css">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- CSRFトークンを追加 -->
   </head>
   <body>
 

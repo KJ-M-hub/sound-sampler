@@ -6,7 +6,7 @@
         <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border //invisible">
             <div id="modal-container" class="relative inline-block align-middle top-1/2 -translate-y-1/2 w-full h-full pt-10">
                 
-                <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-white  rounded-md">
+                <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-white  rounded-md overflow-auto">
                     <div id="modal-close" class="z-10 absolute flex right-3 text-3xl cursor-pointer">×</div>
                     <div class="p-2">
                         @include('recording')
