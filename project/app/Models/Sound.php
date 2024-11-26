@@ -16,6 +16,9 @@ class Sound extends Model
         'title',
         'description',
         'playlist_id',
+        'mime_type',
+        'duration',
+        'audio_data', // 追加
     ];
 
     protected $casts = [

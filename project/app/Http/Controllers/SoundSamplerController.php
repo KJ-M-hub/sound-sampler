@@ -26,12 +26,16 @@ class SoundSamplerController extends Controller
         // 音声の長さを取得
         $duration = $this->getAudioDuration(storage_path('app/' . $filePath));
 
+        // 音声データを取得
+        $audioData = file_get_contents($request->file('audioData')->getRealPath()); 
+
         // データベースに保存
         Sound::create([
             'title' => $request->clipName,
             'file_path' => $filePath,
             'duration' => $duration,
             'mime_type' => $request->file('audioData')->getClientMimeType(),
+            'audio_data' => $audioData,
         ]);
 
         return response()->json(['message' => 'Sound saved successfully!']);
