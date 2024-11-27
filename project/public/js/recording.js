@@ -117,7 +117,11 @@ if (navigator.mediaDevices.getUserMedia) {
         const formData = new FormData();
         formData.append("clipName", clipName || "My unnamed clip");
         formData.append("audioData", blob, `${clipName || "My unnamed clip"}.webm`);
-    
+
+        // デバッグ用にformDataの内容を表示
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
         // サーバーにデータを送信
         fetch('/save-sound', {
             method: 'POST',
