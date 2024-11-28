@@ -27,12 +27,16 @@ class SoundSamplerController extends Controller
             // 音声ファイルをストレージに保存
             $filePath = $request->file('audioData')->store('sounds'); // soundsディレクトリに保存
             \Log::info('File saved at: ' . $filePath); // 保存されたファイルのパスをログに記録
-            // 音声データを取得
-            $audioData = file_get_contents($request->file('audioData')->getRealPath());
 
+            // 音声データを取得
+            $audioData = file_get_contents(storage_path('app/private/' . $filePath));
+            
             // ffmpegを使用して音声の長さを取得する
             $ffprobe = \FFMpeg\FFProbe::create();
-            $duration = $ffprobe->format(storage_path('app/' . $filePath))->get('duration');
+            $duration = $ffprobe->format(storage_path('app/private/' . $filePath))->get('duration');
+            
+            // 音声データをbase64エンコードして保存
+            $audioDataEncoded = base64_encode($audioData);
 
             // データベースに保存
             Sound::create([
@@ -40,7 +44,7 @@ class SoundSamplerController extends Controller
                 'file_path' => $filePath,
                 'duration' => $duration,
                 'mime_type' => $request->file('audioData')->getClientMimeType(),
-                'audio_data' => $audioData,
+                'audio_data' => $audioDataEncoded,
             ]);
 
             return response()->json(['message' => 'Sound saved successfully!']);

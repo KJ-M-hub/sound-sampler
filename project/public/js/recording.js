@@ -125,7 +125,9 @@ if (navigator.mediaDevices.getUserMedia) {
         // サーバーにデータを送信
         fetch('/save-sound', {
             method: 'POST',
-            headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')},
+            headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                      'Accept': 'application/json'
+            },
             body: formData,
         })
         .then(async response => {
@@ -138,6 +140,7 @@ if (navigator.mediaDevices.getUserMedia) {
         .then(data => {
             console.log('Success:', data);
             alert('音声が保存されました。');
+            clipContainer.remove(); // クリップを自動で削除
         })
         .catch((error) => {
             console.error('Error:', error);
