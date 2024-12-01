@@ -17,8 +17,11 @@ Route::get('/recording', [App\Http\Controllers\SoundSamplerController::class, 'r
 Route::post('/save-sound', [SoundSamplerController::class, 'saveSound'])
 ->name('save-sound');
 
+Route::get('/sounds', [App\Http\Controllers\SoundSamplerController::class, 'index'])
+->middleware(['auth', 'verified'])->name('index');
 
-
+Route::delete('/delete-sound/{id}', [SoundSamplerController::class, 'deleteSound'])
+->name('delete-sound');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
