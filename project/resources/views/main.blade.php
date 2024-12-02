@@ -3,7 +3,7 @@
 
     <x-slot name="slot" class="">
         {{-- modal window --}}
-        <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border //invisible">
+        <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border invisible">
             <div id="modal-container" class="relative inline-block align-middle top-1/2 -translate-y-1/2 w-full h-full pt-10">
                 
                 <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-white  rounded-md overflow-auto">
@@ -139,7 +139,7 @@
                 </a>
             </div>
             <div class="flex-1 flex justify-start pl-12 sm:pl-24">
-                <a class="cursor-pointer">
+                <a class="cursor-pointer" href="{{ route('index') }}">
                     <img src="{{ asset('Pasted Graphic 2.png') }}" class="w-14 h-auto md:w-24 " alt="Description of image">
                 </a>
             </div>
