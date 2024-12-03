@@ -16,7 +16,7 @@
     
         
         {{-- modal window --}}
-        <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border z-10 //invisible">
+        <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border z-10 invisible">
             <div id="modal-container" class="relative inline-block align-middle top-1/2 -translate-y-1/2 w-full h-full pt-10 ">
                 
                 <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-white  rounded-md overflow-auto">
@@ -51,6 +51,37 @@
                     <button class="select border rounded p-1 mt-3 bg-green-400" id="open-modal" data-sound-id="{{ $sound->id }}">選択</button>
                 </article>
             @endforeach
+
+            @php
+                $soundFiles = [];
+                $directory = '../storage/app/public/sounds';
+                $files = array_diff(scandir($directory), array('..', '.')); // ディレクトリ内のファイルを取得
+
+                foreach ($files as $file) {
+                    if (pathinfo($file, PATHINFO_EXTENSION) === 'mp3') {
+                        $soundFiles[] = $file; // mp3ファイルを配列に追加
+                    }
+                }
+            @endphp
+
+            <div class="p-4">
+                <h2>効果音</h2>
+                <p>音楽素材MusMus https://musmus.main.jp</p>
+                @foreach(array_slice($soundFiles, 0, 20) as $soundFile) <!-- 最初の10個の音源を表示 -->
+                    <article class="clip mb-4 p-4 border rounded z-0">
+                        <p class="clip-label">{{ pathinfo($soundFile, PATHINFO_FILENAME) }}</p>
+                        <div class="flex justify-center">
+                            <audio id="audio-{{ $soundFile }}" class="w-full">
+                                <source src="{{ asset('storage/sounds/' . $soundFile) }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <button class="play-button border rounded p-1 mt-3 mr-3 bg-yellow-400" onclick="document.getElementById('audio-{{ $soundFile }}').play();">再生</button>
+                        <button class="stop-button border rounded p-1 mt-3 mr-3 bg-red-400" onclick="document.getElementById('audio-{{ $soundFile }}').pause();">停止</button>
+                        <button class="border rounded p-1 mt-3 mr-3 bg-green-400">選択</button>
+                    </article>
+                @endforeach
+            </div>
         </div>
         <script src="{{ asset('js/recording.js') }}"></script>
         <script src="{{ asset('js/delete-button.js') }}"></script>
