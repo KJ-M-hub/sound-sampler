@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Playlist extends Model
@@ -10,6 +11,9 @@ class Playlist extends Model
 
     protected $fillable = [
         'sound_id',
+        'button_id',
+        'sound_title',
+        'user_id',
     ];
 
     protected $casts = [
@@ -22,4 +26,8 @@ class Playlist extends Model
         return $this->hasMany(Sound::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

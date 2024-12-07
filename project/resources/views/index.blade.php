@@ -19,19 +19,15 @@
         <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border z-10 invisible">
             <div id="modal-container" class="relative inline-block align-middle top-1/2 -translate-y-1/2 w-full h-full pt-10 ">
                 
-                <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-white  rounded-md overflow-auto">
+                <div id="modal-content" class="relative inline-block w-3/4 h-3/4 lg:w-1/2 bg-white  rounded-md overflow-auto">
                     <div id="modal-close" class="z-10 absolute flex right-3 text-3xl cursor-pointer">×</div>
                     <div class="p-5 flex flex-col items-center h-full">
                         <p>どのボタンに割り当てる？</p>
+
                         <div class="grid grid-cols-2 gap-4 mt-4 h-full w-full">
-                            <button class="border rounded w-full h-full bg-red-400" id="soundBtm-1">1</button>
-                            <button class="border rounded w-full h-full bg-green-400" id="soundBtm-2">2</button>
-                            <button class="border rounded w-full h-full bg-red-400" id="soundBtm-3">Q</button>
-                            <button class="border rounded w-full h-full bg-green-400" id="soundBtm-4">W</button>
-                            <button class="border rounded w-full h-full bg-red-400" id="soundBtm-5">A</button>
-                            <button class="border rounded w-full h-full bg-green-400" id="soundBtm-6">S</button>
-                            <button class="border rounded w-full h-full bg-red-400" id="soundBtm-7">Z</button>
-                            <button class="border rounded w-full h-full bg-green-400" id="soundBtm-8">X</button>
+                            @for ($i = 1; $i <= 8; $i++)
+                                <button class="border rounded w-full h-full bg-violet-400" id="select-soundBtm-{{ $i }}" data-sound-id="">Sound {{ $i }}</button>
+                            @endfor
                         </div>
                     </div>
                 </div>
@@ -40,6 +36,7 @@
 
         {{-- main content --}}
         <div class="p-4">
+            {{-- recording sounds --}}
             @foreach($sounds as $sound)
                 <article class="clip mb-4 p-4 border rounded z-0" data-sound-id="{{ $sound->id }}">
                     <p class="clip-label">{{ $sound->title }}</p>
@@ -48,10 +45,13 @@
                         Your browser does not support the audio element.
                     </audio>
                     <button class="delete border rounded p-1 mt-3 mr-3 bg-red-400" data-sound-id="{{ $sound->id }}">削除</button>
-                    <button class="select border rounded p-1 mt-3 bg-green-400" id="open-modal" data-sound-id="{{ $sound->id }}">選択</button>
+                    <button class="select open-modal border rounded p-1 mt-3 bg-green-400"  data-sound-id="{{ $sound->id }}">選択</button>
                 </article>
             @endforeach
+            
+            
 
+            {{-- default sounds --}}
             @php
                 $soundFiles = [];
                 $directory = '../storage/app/public/sounds';
@@ -64,7 +64,7 @@
                 }
             @endphp
 
-            <div class="p-4">
+            <div class="">
                 <h2>効果音</h2>
                 <p>音楽素材MusMus https://musmus.main.jp</p>
                 @foreach(array_slice($soundFiles, 0, 20) as $soundFile) <!-- 最初の10個の音源を表示 -->
@@ -78,7 +78,7 @@
                         </div>
                         <button class="play-button border rounded p-1 mt-3 mr-3 bg-yellow-400" onclick="document.getElementById('audio-{{ $soundFile }}').play();">再生</button>
                         <button class="stop-button border rounded p-1 mt-3 mr-3 bg-red-400" onclick="document.getElementById('audio-{{ $soundFile }}').pause();">停止</button>
-                        <button class="border rounded p-1 mt-3 mr-3 bg-green-400">選択</button>
+                        <button class="open-modal border rounded p-1 mt-3 mr-3 bg-green-400">選択</button>
                     </article>
                 @endforeach
             </div>
@@ -86,5 +86,6 @@
         <script src="{{ asset('js/recording.js') }}"></script>
         <script src="{{ asset('js/delete-button.js') }}"></script>
         <script src="{{ asset('js/modal.js') }}"></script>
+        <script src="{{ asset('js/play-sound.js') }}"></script>
     </x-slot>  
 </x-app-layout>

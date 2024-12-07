@@ -46,6 +46,7 @@
 
 
             {{-- sound button --}}
+
             <div class="grid grid-cols-2 gap-4 place-items-stretch">
 
                 <div id="soundBtm-1" class="flex items-center  justify-end mx-4 my-2 md:mt-8 lg:mt-10">
@@ -54,7 +55,7 @@
                             <p class="text-xl text-center">1</p>
                             <p class="text-center">key</p>
                         </div>
-                        <div class="text-center truncate"><Q>sounds->title111111</Q></div>
+                        <div class="text-center truncate"><Q id="title-sound1">Loading...</Q></div>
                     </div>
                 </div>
                 
@@ -134,7 +135,7 @@
         {{-- footer --}}
         <footer class="flex justify-between border p-1 ">
             <div class="flex-1 flex justify-end pr-12 sm:pr-24">
-                <a id="open-modal" class="cursor-pointer">
+                <a  class="open-modal cursor-pointer">
                     <img src="{{ asset('Pasted Graphic.png') }}" class="w-14 h-auto md:w-24 " alt="Description of image">
                 </a>
             </div>
@@ -145,9 +146,7 @@
             </div>
         </footer>
         <script src="{{asset('js/modal.js')}}"></script>
+        <script src="{{asset('js/play-sound.js')}}"></script>
     </x-slot>
 </x-app-layout>
 
-{{-- <div name="grid-item" class="w-1/2 h-24 m-5 border-4 border-gray-50 border-double rounded">
-    <div name="square" class=" bg-red-400">aaa</div>
-</div> --}}

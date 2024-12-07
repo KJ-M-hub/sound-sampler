@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SoundSamplerController;
+use App\Http\Controllers\PlaylistController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,14 @@ Route::get('/sounds', [App\Http\Controllers\SoundSamplerController::class, 'inde
 
 Route::delete('/delete-sound/{id}', [SoundSamplerController::class, 'deleteSound'])
 ->name('delete-sound');
+
+Route::post('/playlist', [PlaylistController::class, 'store'])
+->name('playlist.store');
+
+Route::put('/playlist/{id}', [PlaylistController::class, 'update'])
+->name('playlist.update');
+
+Route::get('/playlist', [PlaylistController::class, 'index'])->name('playlist.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

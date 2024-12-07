@@ -83,5 +83,7 @@ class SoundSamplerController extends Controller
             return response()->json(['error' => 'Unable to delete sound: ' . $e->getMessage()], 500);
         }
     }
+
+    
     
 }
