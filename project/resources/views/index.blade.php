@@ -86,6 +86,5 @@
         <script src="{{ asset('js/recording.js') }}"></script>
         <script src="{{ asset('js/delete-button.js') }}"></script>
         <script src="{{ asset('js/modal.js') }}"></script>
-        <script src="{{ asset('js/play-sound.js') }}"></script>
     </x-slot>  
 </x-app-layout>

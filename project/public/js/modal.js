@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         })
+        
         .catch(error => console.error('Error fetching playlist:', error));
 });
 
@@ -78,3 +79,4 @@ soundButtons.forEach(soundButton => {
         modal.classList.add("invisible"); // モーダルを閉じる
     });
 });
+

@@ -32,6 +32,9 @@ Route::put('/playlist/{id}', [PlaylistController::class, 'update'])
 
 Route::get('/playlist', [PlaylistController::class, 'index'])->name('playlist.index');
 
+Route::get('/sounds/{id}', [SoundSamplerController::class, 'getSound'])
+->name('get-sound');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

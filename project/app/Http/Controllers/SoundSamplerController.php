@@ -84,6 +84,13 @@ class SoundSamplerController extends Controller
         }
     }
 
-    
+    public function getSound($id) {
+        try {
+            $sound = Sound::findOrFail($id);
+            return response()->json($sound);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Sound not found'], 404);
+        }
+    }
     
 }

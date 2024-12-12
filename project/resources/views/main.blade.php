@@ -1,6 +1,4 @@
 <x-app-layout>
-    
-
     <x-slot name="slot" class="">
         {{-- modal window --}}
         <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border invisible">
@@ -43,11 +41,22 @@
         
         {{-- main content --}}
         <div class="flex-grow">
-
-
             {{-- sound button --}}
-
             <div class="grid grid-cols-2 gap-4 place-items-stretch">
+                @for ($i = 1; $i <= 8; $i++)
+                    <div id="soundBtm-{{ $i }}" class="flex items-center justify-end mx-4 my-2 md:mt-8 lg:mt-10 sound-button" data-key="{{ $i }}" data-sound-id="">
+                        <div class="w-2/3 h-auto md:w-1/2 bg-red-400 border-4 border-gray-50 border-double rounded aspect-square min-w-28 max-w-56">
+                            <div class="w-1/3 m-1 mb-3 p-1 bg-gray-300 rounded text-wrap">
+                                <p class="text-xl text-center">{{ $i }}</p>
+                                <p class="text-center">key</p>
+                            </div>
+                            <div class="text-center truncate"><Q id="title-sound{{ $i }}">Loading...</Q></div>
+                            <audio id="audio-sound{{ $i }}" class="hidden"></audio>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+            {{-- <div class="grid grid-cols-2 gap-4 place-items-stretch">
 
                 <div id="soundBtm-1" class="flex items-center  justify-end mx-4 my-2 md:mt-8 lg:mt-10">
                     <div class="w-2/3 h-auto md:w-1/2 bg-red-400 border-4 border-gray-50 border-double rounded aspect-square min-w-28 max-w-56">
@@ -130,7 +139,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> --}}
 
         {{-- footer --}}
         <footer class="flex justify-between border p-1 ">
