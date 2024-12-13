@@ -68,11 +68,15 @@ class SoundSamplerController extends Controller
     public function deleteSound($id) {
         try {
             $sound = Sound::findOrFail($id); // IDで音声を取得
-            $filePath = storage_path('app/public/' . $sound->file_path); // ストレージのパスを取得
     
-            // ストレージからファイルを削除
-            if (file_exists($filePath)) {
-                unlink($filePath);
+            // 拡張子が.mp3の場合はファイルを削除しない
+            if (pathinfo($sound->file_path, PATHINFO_EXTENSION) !== 'mp3') {
+                $filePath = storage_path('app/public/' . $sound->file_path); // ストレージのパスを取得
+    
+                // ストレージからファイルを削除
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
             }
     
             // データベースから音声を削除
@@ -89,8 +93,43 @@ class SoundSamplerController extends Controller
             $sound = Sound::findOrFail($id);
             return response()->json($sound);
         } catch (\Exception $e) {
+            \Log::error('Error retrieving sound: ' . $e->getMessage());
             return response()->json(['error' => 'Sound not found'], 404);
         }
     }
     
+    public function saveSoundMp3(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'file_path' => 'required|string',
+        ]);
+
+        try {
+            $filePath = $request->input('file_path');
+            $title = $request->input('title');
+
+            // 同じタイトルとファイルパスのデータが既に存在するか確認
+            $existingSound = Sound::where('title', $title)->where('file_path', $filePath)->first();
+
+            if ($existingSound) {
+                return response()->json(['message' => 'Sound already exists!']);
+            }
+
+            $audioData = file_get_contents(storage_path('app/public/' . $filePath));
+            $audioDataEncoded = base64_encode($audioData);
+
+            Sound::create([
+                'title' => $title,
+                'file_path' => $filePath,
+                'mime_type' => 'audio/mpeg',
+                'audio_data' => $audioDataEncoded,
+            ]);
+
+            return response()->json(['message' => 'Sound saved successfully!']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Unable to save sound: ' . $e->getMessage()], 500);
+        }
+    }
+
 }

@@ -35,6 +35,9 @@ Route::get('/playlist', [PlaylistController::class, 'index'])->name('playlist.in
 Route::get('/sounds/{id}', [SoundSamplerController::class, 'getSound'])
 ->name('get-sound');
 
+Route::post('/save-soundMp3', [SoundSamplerController::class, 'saveSoundMp3'])
+->name('save-sound');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

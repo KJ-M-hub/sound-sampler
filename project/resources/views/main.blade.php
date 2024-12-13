@@ -42,12 +42,24 @@
         {{-- main content --}}
         <div class="flex-grow">
             {{-- sound button --}}
+            @php
+                $keyMap = [
+                    1 => '1',
+                    2 => '2',
+                    3 => 'Q',
+                    4 => 'W',
+                    5 => 'A',
+                    6 => 'S',
+                    7 => 'Z',
+                    8 => 'X'
+                ];
+            @endphp
             <div class="grid grid-cols-2 gap-4 place-items-stretch">
                 @for ($i = 1; $i <= 8; $i++)
                     <div id="soundBtm-{{ $i }}" class="flex items-center justify-end mx-4 my-2 md:mt-8 lg:mt-10 sound-button" data-key="{{ $i }}" data-sound-id="">
                         <div class="w-2/3 h-auto md:w-1/2 bg-red-400 border-4 border-gray-50 border-double rounded aspect-square min-w-28 max-w-56">
                             <div class="w-1/3 m-1 mb-3 p-1 bg-gray-300 rounded text-wrap">
-                                <p class="text-xl text-center">{{ $i }}</p>
+                                <p class="text-xl text-center">{{ $keyMap[$i] }}</p>
                                 <p class="text-center">key</p>
                             </div>
                             <div class="text-center truncate"><Q id="title-sound{{ $i }}">Loading...</Q></div>

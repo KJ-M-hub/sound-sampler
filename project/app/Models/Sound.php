@@ -24,6 +24,7 @@ class Sound extends Model
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'audio_data' => 'string', // 追加
     ];
 
     public function user()

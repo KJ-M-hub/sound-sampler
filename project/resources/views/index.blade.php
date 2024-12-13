@@ -40,10 +40,18 @@
             @foreach($sounds as $sound)
                 <article class="clip mb-4 p-4 border rounded z-0" data-sound-id="{{ $sound->id }}">
                     <p class="clip-label">{{ $sound->title }}</p>
-                    <audio controls>
+                    {{-- <audio controls>
                         <source src="{{ asset('storage/' . $sound->file_path) }}" type="{{ $sound->mime_type }}">
                         Your browser does not support the audio element.
-                    </audio>
+                    </audio> --}}
+                    <div class="flex justify-center">
+                        <audio id="audio-{{ $sound->id }}" class="w-full">
+                            <source src="{{ asset('storage/' . $sound->file_path) }}" type="{{ $sound->mime_type }}">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <button class="play-button border rounded p-1 mt-3 mr-3 bg-yellow-400" onclick="document.getElementById('audio-{{ $sound->id }}').play();">再生</button>
+                    <button class="stop-button border rounded p-1 mt-3 mr-3 bg-red-400" onclick="document.getElementById('audio-{{ $sound->id }}').pause();">停止</button>
                     <button class="delete border rounded p-1 mt-3 mr-3 bg-red-400" data-sound-id="{{ $sound->id }}">削除</button>
                     <button class="select open-modal border rounded p-1 mt-3 bg-green-400"  data-sound-id="{{ $sound->id }}">選択</button>
                 </article>
@@ -67,7 +75,7 @@
             <div class="">
                 <h2>効果音</h2>
                 <p>音楽素材MusMus https://musmus.main.jp</p>
-                @foreach(array_slice($soundFiles, 0, 20) as $soundFile) <!-- 最初の10個の音源を表示 -->
+                @foreach(array_slice($soundFiles, 0, 30) as $soundFile) <!-- 最初の10個の音源を表示 -->
                     <article class="clip mb-4 p-4 border rounded z-0">
                         <p class="clip-label">{{ pathinfo($soundFile, PATHINFO_FILENAME) }}</p>
                         <div class="flex justify-center">
@@ -78,7 +86,7 @@
                         </div>
                         <button class="play-button border rounded p-1 mt-3 mr-3 bg-yellow-400" onclick="document.getElementById('audio-{{ $soundFile }}').play();">再生</button>
                         <button class="stop-button border rounded p-1 mt-3 mr-3 bg-red-400" onclick="document.getElementById('audio-{{ $soundFile }}').pause();">停止</button>
-                        <button class="open-modal border rounded p-1 mt-3 mr-3 bg-green-400">選択</button>
+                        <button class="save-to-db  border rounded p-1 mt-3 mr-3 bg-green-400"  data-file-name="{{ $soundFile }}">保存</button>
                     </article>
                 @endforeach
             </div>
@@ -86,5 +94,6 @@
         <script src="{{ asset('js/recording.js') }}"></script>
         <script src="{{ asset('js/delete-button.js') }}"></script>
         <script src="{{ asset('js/modal.js') }}"></script>
+        <script src="{{ asset('js/save-mp3-to-db.js') }}"></script>
     </x-slot>  
 </x-app-layout>
