@@ -118,6 +118,15 @@ if (navigator.mediaDevices.getUserMedia) {
         formData.append("clipName", clipName || "My unnamed clip");
         formData.append("audioData", blob, `${clipName || "My unnamed clip"}.webm`);
 
+        // ユーザーIDを取得して追加
+        const userIdMeta = document.querySelector('meta[name="user-id"]');
+        if (!userIdMeta) {
+            alert('ユーザーIDが取得できませんでした。ログインしていることを確認してください。');
+            return;
+        }
+        const userId = document.querySelector('meta[name="user-id"]').getAttribute('content');
+        formData.append("user_id", userId);
+
         // デバッグ用にformDataの内容を表示
         for (let pair of formData.entries()) {
             console.log(pair[0] + ': ' + pair[1]);

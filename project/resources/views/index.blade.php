@@ -1,6 +1,6 @@
 <x-app-layout>
     
-
+￥
     <x-slot name="slot" class="">
         {{-- header --}}
         <header class="bg-white dark:bg-gray-400 shadow flex px-0">
@@ -73,9 +73,10 @@
             @endphp
 
             <div class="">
-                <h2>効果音</h2>
-                <p>音楽素材MusMus https://musmus.main.jp</p>
-                @foreach(array_slice($soundFiles, 0, 30) as $soundFile) <!-- 最初の10個の音源を表示 -->
+                <h2>効果音 提供元</h2>
+                <p>音楽素材MusMus (https://musmus.main.jp)</p>
+                <p>オトロジック (https://otologic.jp)</p>
+                @foreach(array_slice($soundFiles, 0, 50) as $soundFile) <!-- 最初の10個の音源を表示 -->
                     <article class="clip mb-4 p-4 border rounded z-0">
                         <p class="clip-label">{{ pathinfo($soundFile, PATHINFO_FILENAME) }}</p>
                         <div class="flex justify-center">

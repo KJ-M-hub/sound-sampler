@@ -29,9 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(sounds => {
                         const audioElement = new Audio(`/storage/${sounds.file_path}`); // 音声ファイルのパスを設定
                         soundButton.addEventListener('click', () => {
-                            audioElement.play().catch(error => {
-                                console.error('Error playing audio:', error);
-                            });
+                            if (!audioElement.paused) {
+                                audioElement.currentTime = 0; // 再生ポイントをリセット
+                                audioElement.pause(); // 再生を一時停止
+                            } else {
+                                audioElement.play().catch(error => {
+                                    console.error('Error playing audio:', error);
+                                });
+                            }
                         });
 
                         // タイトルを設定

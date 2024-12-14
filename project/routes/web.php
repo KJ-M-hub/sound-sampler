@@ -18,8 +18,12 @@ Route::get('/recording', [App\Http\Controllers\SoundSamplerController::class, 'r
 Route::post('/save-sound', [SoundSamplerController::class, 'saveSound'])
 ->name('save-sound');
 
-Route::get('/sounds', [App\Http\Controllers\SoundSamplerController::class, 'index'])
-->middleware(['auth', 'verified'])->name('index');
+// Route::get('/sounds', [App\Http\Controllers\SoundSamplerController::class, 'index'])
+// ->middleware(['auth', 'verified'])->name('index');
+
+Route::get('/user-sounds', [SoundSamplerController::class, 'userSounds'])
+    ->middleware(['auth', 'verified'])
+    ->name('user-sounds');
 
 Route::delete('/delete-sound/{id}', [SoundSamplerController::class, 'deleteSound'])
 ->name('delete-sound');

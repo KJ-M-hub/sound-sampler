@@ -21,11 +21,12 @@ class SoundSamplerController extends Controller
         $request->validate([
             'clipName' => 'required|string|max:255',
             'audioData' => 'required|file|mimes:wav,mp3,webm', // 音声ファイルの形式を指定
+            'user_id' => 'required|exists:users,id', // user_idのバリデーションを追加
         ]);
-
+        \Log::info('Received user_id: ' . $request->user_id); // 追加: user_idをログに記録
         try{
             // 音声ファイルをストレージに保存
-            $filePath = $request->file('audioData')->store('sounds', 'public'); // soundsディレクトリに保存
+            $filePath = $request->file('audioData')->store('sounds', 'public'); 
             \Log::info('File saved at: ' . $filePath); // 保存されたファイルのパスをログに記録
 
             // 音声データを取得
@@ -39,11 +40,8 @@ class SoundSamplerController extends Controller
             preg_match('/time=(\d+:\d+:\d+\.\d+)/', $output, $matches);
             $duration = isset($matches[1]) ? $matches[1] : null;
 
-            \Log::info('Audio duration: ' . $duration);
-
             // 音声データをbase64エンコードして保存
             $audioDataEncoded = base64_encode($audioData);
-            \Log::info('Audio data encoded: ' . $audioDataEncoded);
             // データベースに保存
             Sound::create([
                 'title' => $request->clipName,
@@ -51,6 +49,7 @@ class SoundSamplerController extends Controller
                 'duration' => $duration,
                 'mime_type' => $request->file('audioData')->getClientMimeType(),
                 'audio_data' => $audioDataEncoded,
+                'user_id' => $request->user_id,
             ]);
 
             return response()->json(['message' => 'Sound saved successfully!']);
@@ -103,17 +102,22 @@ class SoundSamplerController extends Controller
         $request->validate([
             'title' => 'required|string',
             'file_path' => 'required|string',
+            'user_id' => 'required|exists:users,id', // user_idのバリデーションを追加
         ]);
 
         try {
             $filePath = $request->input('file_path');
             $title = $request->input('title');
+            $userId = $request->input('user_id');
 
             // 同じタイトルとファイルパスのデータが既に存在するか確認
-            $existingSound = Sound::where('title', $title)->where('file_path', $filePath)->first();
+            $existingSound = Sound::where('title', $title)
+            ->where('file_path', $filePath)
+            ->where('user_id', $userId)
+            ->first();
 
             if ($existingSound) {
-                return response()->json(['message' => 'Sound already exists!']);
+                return response()->json(['message' => 'Sound already exists for this user!']);
             }
 
             $audioData = file_get_contents(storage_path('app/public/' . $filePath));
@@ -124,12 +128,20 @@ class SoundSamplerController extends Controller
                 'file_path' => $filePath,
                 'mime_type' => 'audio/mpeg',
                 'audio_data' => $audioDataEncoded,
+                'user_id' => $userId,
             ]);
 
             return response()->json(['message' => 'Sound saved successfully!']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Unable to save sound: ' . $e->getMessage()], 500);
         }
+    }
+
+    public function userSounds()
+    {
+        $userId = auth()->id();
+        $sounds = Sound::where('user_id', $userId)->get();
+        return view('index', compact('sounds'));
     }
 
 }

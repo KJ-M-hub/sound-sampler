@@ -19,6 +19,7 @@ class Sound extends Model
         'mime_type',
         'duration',
         'audio_data', // 追加
+        'user_id', // 追加
     ];
 
     protected $casts = [
