@@ -38,7 +38,7 @@
         <div class="p-4">
             {{-- recording sounds --}}
             @foreach($sounds as $sound)
-                <article class="clip mb-4 p-4 border rounded z-0" data-sound-id="{{ $sound->id }}">
+                <article class="clip mb-4 p-4 border border-4 border-amber-400 rounded z-0" data-sound-id="{{ $sound->id }}">
                     <p class="clip-label">{{ $sound->title }}</p>
                     {{-- <audio controls>
                         <source src="{{ asset('storage/' . $sound->file_path) }}" type="{{ $sound->mime_type }}">
@@ -76,7 +76,7 @@
                 <h2>効果音 提供元</h2>
                 <p>音楽素材MusMus (https://musmus.main.jp)</p>
                 <p>オトロジック (https://otologic.jp)</p>
-                @foreach(array_slice($soundFiles, 0, 50) as $soundFile) <!-- 最初の10個の音源を表示 -->
+                @foreach(array_slice($soundFiles, 0, 100) as $soundFile) <!-- 最初の10個の音源を表示 -->
                     <article class="clip mb-4 p-4 border rounded z-0">
                         <p class="clip-label">{{ pathinfo($soundFile, PATHINFO_FILENAME) }}</p>
                         <div class="flex justify-center">
