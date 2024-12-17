@@ -12,32 +12,32 @@
                 </div>
             </div>
         </div>
-        <div class="min-h-screen flex flex-col">
+        <div class="min-h-screen flex flex-col max-w-[1000px] mx-auto">
             
             {{-- header --}}
             <header class="bg-gray-600 flex px-0 justify-between items-center">
                 <div class="flex-grow flex justify-center">
-                    <div class="ml-[6vw] mr-[1vw] max-w-7xl mx-auto py-1 px-1 sm:px-6 lg:px-8 text-2xl sm:text-6xl text-center ">
+                    <div class="ml-[6vw] mr-[1vw] max-w-7xl mx-auto py-1 px-1 sm:px-6 lg:px-8 text-2xl sm:text-6xl text-center text-gray-200">
                         SoundSampler
                     </div>
                 </div>
                 <!-- ハンバーガーメニューのボタン -->
-                <button id="hamburger-button" class="block p-2 focus:outline-none">
+                <button id="hamburger-button" class="block p-2 focus:outline-none text-gray-100">
                     <svg class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
                 </button>
 
                 <!-- メニュー -->
-                <div id="hamburger-menu" class="hidden flex flex-col sm:flex-row">
+                <div id="hamburger-menu" class="hidden flex flex-col">
                     <x-dropdown-link :href="route('profile.edit')" class="text-sm sm:text-base md:text-lg lg:text-xl menu-item">
                         {{ __('Profile') }}
                     </x-dropdown-link>
-
+                
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-
+                
                         <x-dropdown-link :href="route('logout')" class="text-sm sm:text-base md:text-lg lg:text-xl menu-item"
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">
@@ -96,8 +96,8 @@
                 @endphp
                 <div class="grid grid-cols-2 gap-2 place-items-stretch">
                     @for ($i = 1; $i <= 8; $i++)
-                        <div id="soundBtm-{{ $i }}" class="flex items-center justify-center mx-2 my-1 md:mt-8 lg:mt-10 sound-button" data-key="{{ $i }}" data-sound-id="">
-                            <div class="w-2/3 h-auto md:w-1/2 bg-teal-500 shadow-lg shadow-teal-500/50 border-4 border-gray-50 border-double rounded aspect-square min-w-28 max-w-48">
+                        <div  class="flex items-center justify-center mx-2 my-1 md:mt-8 lg:mt-10 sound-button" data-key="{{ $i }}" data-sound-id="">
+                            <div id="soundBtm-{{ $i }}" class="w-2/3 h-auto md:w-1/2 bg-teal-500 shadow-lg shadow-teal-500/50 border-4 border-gray-50 border-double rounded aspect-square min-w-28 max-w-48">
                                 <div class="w-1/3 m-1 mb-3 p-1 bg-gray-300 rounded text-wrap">
                                     <p class="text-xl text-center">{{ $keyMap[$i] }}</p>
                                     <p class="text-center">key</p>
