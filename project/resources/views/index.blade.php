@@ -3,7 +3,7 @@
 ￥
     <x-slot name="slot" class="">
         {{-- header --}}
-        <header class="bg-white dark:bg-gray-400 shadow flex px-0">
+        <header class="bg-gray-600 shadow flex px-0">
             <div class="grow">
                 <div class=" pl-24 max-w-7xl mx-auto py-1 px-1 sm:px-6 lg:px-8 text-2xl md:text-6xl text-center">
                     サウンド一覧
