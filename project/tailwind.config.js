@@ -14,8 +14,31 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            textStrokeWidth: {
+                '1': '1px',
+                '2': '2px',
+            },
+            textStrokeColor: {
+                'white': '#FFF',
+            },
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        function ({ addUtilities }) {
+            const newUtilities = {
+                '.text-stroke-1': {
+                    '-webkit-text-stroke-width': '1px',
+                },
+                '.text-stroke-2': {
+                    '-webkit-text-stroke-width': '2px',
+                },
+                '.text-stroke-white': {
+                    '-webkit-text-stroke-color': '#FFF',
+                },
+            }
+            addUtilities(newUtilities, ['responsive', 'hover'])
+        }
+    ],
 };

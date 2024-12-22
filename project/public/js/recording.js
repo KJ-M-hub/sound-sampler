@@ -71,11 +71,11 @@ if (navigator.mediaDevices.getUserMedia) {
       clipContainer.classList.add("clip");
       audio.setAttribute("controls", "");
       audio.classList.add("w-full", "rounded"); // 追加
-      deleteButton.textContent = "削除"; // テキストを"削除"に変更
+      deleteButton.textContent = "delete"; // テキストを"削除"に変更
       deleteButton.className = "delete";
-      deleteButton.classList.add("mr-2","w-16","bg-red-400", "rounded"); // 追加
-      downloadButton.textContent = "保存"; // テキストを"保存"に変更
-      downloadButton.className = "download w-16 ml-4 bg-gray-300 rounded"; // クラスを追加
+      deleteButton.classList.add("mr-2","w-16","bg-red-500", "rounded"); // 追加
+      downloadButton.textContent = "save"; // テキストを"保存"に変更
+      downloadButton.className = "download w-16 ml-4 bg-cyan-500 rounded"; // クラスを追加
 
       if (clipName === null) {
         clipLabel.textContent = "My unnamed clip";
