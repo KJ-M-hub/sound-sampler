@@ -85,14 +85,14 @@
                           Sampler application with recording function.
                         </h2>
                 
-                        <p class="mb-8 leading-relaxed text-gray-300 md:mb-12 lg:text-xl  xl:text-2xl font-noto-sans-jp">このWebアプリケーションは録音機能付きサンプラーです。効果音や録音した音声を自由に再生することができます。ユーザー登録すると使用できるので、<span class="underline decoration-amber-500 decoration-wavy">未登録の方は画面右上のRegisterボタンをクリックして登録して始めてください！</span></p>
+                        <p class="mb-8 leading-relaxed text-gray-300 md:mb-12 lg:text-xl  xl:text-2xl font-noto-sans-jp">このWebアプリケーションは録音機能付きサンプラーです。効果音や録音した音声を自由に再生することができます。プレゼンテーションやイベントの司会など、状況に合わせてこのアプリケーションをご使用ください。ユーザー登録すると使用できるので、<span class="underline decoration-amber-500 decoration-wavy">未登録の方は画面右上のRegisterボタンをクリックして登録して始めてください！</span></p>
                     </div>
                 </section>
 
                 <section class="text-white">
                     <h1 class="section-headline feature text-4xl md:text-5xl lg:text-6xl text-white my-4 font-bold border-b-2">Feature</h1>
             
-                    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 ">
+                    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         <li class="grid-item">
                             <dl class="feature">
                                 <dt class="my-4 font-bold text-2xl md:text-3xl lg:text-4xl text-teal-500">1.Recording</dt>
@@ -108,7 +108,7 @@
                                 <dd class="">
                                     <img src="{{ asset('soundpad.png')}}" class="rounded-lg" alt="Sample Pad">
                                 </dd>
-                                <dd class="mx-1 my-4 lg:text-xl  xl:text-2xl">録音した音声や効果音をサンプルパッドに見立てたボタンに割り当てて任意のタイミングで再生できます。</dd>
+                                <dd class="mx-1 my-4 lg:text-xl  xl:text-2xl">Sample Padと呼ばれる電子機器のパッドを模したボタンに音を入れて自分の好きなタイミングで再生することができます。気分はサウンドディレクター！</dd>
                             </dl>
                         </li>
                         <li class="grid-item">
@@ -118,15 +118,6 @@
                                     <img src="{{ asset('multidevice.jpeg') }}" class="rounded-lg" alt="Recording">
                                 </dd>
                                 <dd class="mx-1 my-4 lg:text-xl  xl:text-2xl">WebアプリなのでPC・スマートフォン・タブレットで使用可能です。</dd>
-                            </dl>
-                        </li>
-                        <li class="grid-item">
-                            <dl class="feature">
-                                <dt class="my-4 font-bold text-2xl md:text-3xl lg:text-4xl text-teal-500">4.Can be used in various situations</dt>
-                                <dd class="">
-                                    <img src="{{ asset('ChatGPT.webp') }}" class="rounded-lg" alt="Recording">
-                                </dd>
-                                <dd class="mx-1 my-4 lg:text-xl  xl:text-2xl">プレゼンテーションやイベントの司会など、状況に合わせてこのアプリケーションをご使用ください。</dd>
                             </dl>
                         </li>
                     </ul>
