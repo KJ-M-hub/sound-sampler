@@ -9,7 +9,7 @@
                 Sound List
             </div>
 
-            <a href="#_" onclick="location.href='{{ route('main') }}'" class="w-1 box-border relative z-2 inline-flex items-center justify-center w-auto mx-4 my-2 px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
+            <a href="#_" onclick="location.href='{{ route('main') }}'" class="w-auto box-border relative z-2 inline-flex items-center justify-center mx-4 my-2 px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
                 <span class="absolute bottom-0 right-0 w-8 h-16 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                 <span class="absolute top-0 left-0 w-16 h-4 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                 <span class="relative z-3 flex items-center text-sm">
@@ -30,7 +30,7 @@
 
                         <div class="grid grid-cols-2 gap-4 mt-4 h-full w-full">
                             @for ($i = 1; $i <= 8; $i++)
-                                <button class="border rounded w-full h-full bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100% rounded-xl" id="select-soundBtm-{{ $i }}" data-sound-id="">Sound {{ $i }}</button>
+                                <button class="border rounded w-full h-full bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100%" id="select-soundBtm-{{ $i }}" data-sound-id="">Sound {{ $i }}</button>
                             @endfor
                         </div>
                     </div>

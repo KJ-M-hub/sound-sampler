@@ -29,7 +29,7 @@
                 </button>
 
                 <!-- メニュー -->
-                <div id="hamburger-menu" class="hidden flex flex-col">
+                <div id="hamburger-menu" class="hidden flex-col">
                     <x-dropdown-link :href="route('profile.edit')" class="text-sm sm:text-base md:text-lg lg:text-xl menu-item font-noto-sans-jp">
                         {{ __('Profile') }}
                     </x-dropdown-link>
