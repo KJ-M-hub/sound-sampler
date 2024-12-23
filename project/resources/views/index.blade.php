@@ -30,7 +30,7 @@
 
                         <div class="grid grid-cols-2 gap-4 mt-4 h-full w-full">
                             @for ($i = 1; $i <= 8; $i++)
-                                <button class="border rounded w-full h-full bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100%" id="select-soundBtm-{{ $i }}" data-sound-id="">Sound {{ $i }}</button>
+                                <button class="border rounded-xl w-full h-full bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100%" id="select-soundBtm-{{ $i }}" data-sound-id="">Sound {{ $i }}</button>
                             @endfor
                         </div>
                     </div>
