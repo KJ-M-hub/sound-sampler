@@ -24,3 +24,12 @@
 プレゼンテーションやイベントの司会進行時など様々な状況でこのアプリを使ってみてください。
 
 聴衆を感動させたり、笑わせたり…。あなたの思うままです！
+
+## 使用技術
+* PHP 8.4.1
+* Docker Compose v2.29.2
+* Laravel Framework 11.29.0
+* vite 5.0
+* Tailwind css 3.1.0
+* Java Script
+* PostgreSQL 17.0
