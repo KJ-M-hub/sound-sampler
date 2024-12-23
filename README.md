@@ -28,8 +28,8 @@
 ## 使用技術
 * PHP 8.4.1
 * Docker Compose v2.29.2
-* Laravel Framework 11.29.0
-* vite 5.0
-* Tailwind css 3.1.0
+* Laravel 11.29.0
+* Vite 5.0
+* Tailwind CSS 3.1.0
 * JavaScript/Node.js 20.17.0
 * PostgreSQL 17.0
