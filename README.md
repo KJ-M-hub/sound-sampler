@@ -31,5 +31,5 @@
 * Laravel Framework 11.29.0
 * vite 5.0
 * Tailwind css 3.1.0
-* Java Script/Node.js 20.17.0
+* JavaScript/Node.js 20.17.0
 * PostgreSQL 17.0
