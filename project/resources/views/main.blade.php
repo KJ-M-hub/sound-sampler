@@ -94,10 +94,10 @@
                         8 => 'X'
                     ];
                 @endphp
-                <div class="grid grid-cols-2 gap-2 place-items-stretch">
+                <div class="grid grid-cols-2 gap-1 place-items-stretch">
                     @for ($i = 1; $i <= 8; $i++)
-                        <div  class="flex items-center justify-center mx-2 my-1 md:mt-8 lg:mt-10 sound-button" data-key="{{ $i }}" data-sound-id="">
-                            <div id="soundBtm-{{ $i }}" class="w-2/3 h-auto md:w-1/2 bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100% shadow-inner shadow-slate-100 border  border-gray-300 rounded aspect-square min-w-28 max-w-48">
+                        <div  class="flex items-center justify-center mx-1 my-1 md:mt-4 lg:mt-10 sound-button" data-key="{{ $i }}" data-sound-id="">
+                            <div id="soundBtm-{{ $i }}" class="w-2/3 min-w-28 max-w-48 h-auto md:w-1/2 rounded aspect-square bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100% shadow-inner shadow-slate-100 border  border-gray-300">
                                 <div class="w-1/3 m-1 mb-3 p-1 bg-gray-300 shadow rounded text-wrap">
                                     <p class="text-xl text-center font-noto-sans-jp">{{ $keyMap[$i] }}</p>
                                     <p class="text-center font-noto-sans-jp">key</p>
@@ -110,7 +110,7 @@
                 </div>
 
             {{-- footer --}}
-            <footer class="flex justify-between p-1 mt-3 ">
+            <footer class="flex justify-between p-1 mt-8 ">
                 <div class="flex-1 flex justify-end pr-12 sm:pr-24">
                     <a  class="open-modal cursor-pointer border rounded-full border-teal-500">
                         <img src="{{ asset('microphone-duotone.png') }}" class="w-14 h-auto md:w-24 " alt="Description of image">
