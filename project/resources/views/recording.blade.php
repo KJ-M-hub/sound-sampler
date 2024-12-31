@@ -15,8 +15,8 @@
       <section class="main-controls">
         <canvas class="visualizer" height="60px"></canvas>
         <div id="buttons">
-          <button class="record mr-8">Record</button>
-          <button class="stop ml-8">Stop</button>
+          <button class="record w-24 my-4 mr-8 border border-black rounded-full">Record</button>
+          <button class="stop w-24 my-4 ml-8 border border-black rounded-full">Stop</button>
         </div>
       </section>
 

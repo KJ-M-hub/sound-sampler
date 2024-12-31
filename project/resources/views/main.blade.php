@@ -1,26 +1,27 @@
 <x-app-layout>
     <x-slot name="slot" class="">
-        {{-- modal window --}}
-        <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border invisible">
-            <div id="modal-container" class="relative inline-block align-middle top-1/2 -translate-y-1/2 w-full h-full pt-10">
-                
-                <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-gray-300  rounded-md overflow-auto">
-                    <div id="modal-close" class="z-10 absolute flex right-3 text-3xl cursor-pointer">×</div>
-                    <div class="p-2">
-                        @include('recording')
+            
+        {{-- main content --}}
+        <div class="grid grid-col max-w-[1000px] mx-auto">
+            {{-- modal window --}}
+            <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border invisible">
+                <div id="modal-container" class="relative inline-block align-middle top-1/2 -translate-y-1/2 w-full h-full pt-10">
+                    
+                    <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-gray-300  rounded-md overflow-auto">
+                        <div id="modal-close" class="z-10 absolute flex right-3 text-3xl cursor-pointer">×</div>
+                        <div class="p-2">
+                            @include('recording')
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="min-h-screen flex flex-col max-w-[1000px] mx-auto">
-            
             {{-- header --}}
-            <header class="bg-gray-900 flex px-0 justify-between items-center">
-                <div class="flex-grow flex justify-center">
-                    <div class="ml-[6vw] mr-[1vw] max-w-7xl mx-auto py-1 px-1 sm:px-6 lg:px-8 text-2xl sm:text-6xl text-center text-gray-200 lobster-regular">
-                        Sound Sampler
-                    </div>
+            <header class="bg-gray-900 flex px-0 justify-between">
+               
+                <div class="max-w-7xl mx-auto py-1 px-1 sm:px-6 lg:px-8 text-2xl sm:text-6xl text-center text-gray-200 lobster-regular">
+                    Sound Sampler
                 </div>
+
                 <!-- ハンバーガーメニューのボタン -->
                 <button id="hamburger-button" class="block p-2 focus:outline-none text-gray-100">
                     <svg class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +81,7 @@
             </header>
             
             {{-- main content --}}
-            <div class="flex-grow">
+            
                 {{-- sound button --}}
                 @php
                     $keyMap = [
@@ -94,33 +95,35 @@
                         8 => 'X'
                     ];
                 @endphp
-                <div class="grid grid-cols-2 gap-1 place-items-stretch">
+                <style>
+                    .sound-button {
+                        width: 45%; /* 2列表示のための幅設定 */
+                        margin: 2%; /* 各ボタンの間隔を設定 */
+                    }
+                </style>
+                <div class="flex flex-wrap mx-12 my-4">
                     @for ($i = 1; $i <= 8; $i++)
-                        <div  class="flex items-center justify-center mx-1 my-1 md:mt-4 lg:mt-10 sound-button" data-key="{{ $i }}" data-sound-id="">
-                            <div id="soundBtm-{{ $i }}" class="w-2/3 min-w-28 max-w-48 h-auto md:w-1/2 rounded aspect-square bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100% shadow-inner shadow-slate-100 border  border-gray-300">
-                                <div class="w-1/3 m-1 mb-3 p-1 bg-gray-300 shadow rounded text-wrap">
-                                    <p class="text-xl text-center font-noto-sans-jp">{{ $keyMap[$i] }}</p>
-                                    <p class="text-center font-noto-sans-jp">key</p>
+                            <div  class="sound-button p-1" data-key="{{ $i }}" data-sound-id="">
+                                <div id="soundBtm-{{ $i }}" class=" h-auto rounded aspect-square bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100% shadow-inner shadow-slate-100 border  border-gray-300">
+                                    <div class="w-1/3 m-1 mb-3 p-1 bg-gray-300 shadow rounded text-wrap">
+                                        <p class="text-xl text-center font-noto-sans-jp">{{ $keyMap[$i] }}</p>
+                                        <p class="text-center font-noto-sans-jp">key</p>
+                                    </div>
+                                    <div class="text-sm md:text-2xl text-center truncate font-noto-sans-jp"><Q id="title-sound{{ $i }}" class="">Loading...</Q></div>
+                                    <audio id="audio-sound{{ $i }}" class="hidden"></audio>
                                 </div>
-                                <div class="text-center truncate font-noto-sans-jp"><Q id="title-sound{{ $i }}">Loading...</Q></div>
-                                <audio id="audio-sound{{ $i }}" class="hidden"></audio>
                             </div>
-                        </div>
                     @endfor
                 </div>
 
             {{-- footer --}}
-            <footer class="flex justify-between p-1 mt-8 ">
-                <div class="flex-1 flex justify-end pr-12 sm:pr-24">
-                    <a  class="open-modal cursor-pointer border rounded-full border-teal-500">
-                        <img src="{{ asset('microphone-duotone.png') }}" class="w-14 h-auto md:w-24 " alt="Description of image">
+            <footer class="grid grid-cols-2 mx-8 p-1 gap-8 justify-items-center">
+                    <a  class="w-14 h-14 open-modal grid place-items-center cursor-pointer border rounded-full  border-teal-500">
+                        <img src="{{ asset('microphone-duotone.png') }}" class=" w-14 h-auto md:w-24 " alt="Description of image">
                     </a>
-                </div>
-                <div class="flex-1 flex justify-start pl-12 sm:pl-24">
-                    <a class="cursor-pointer border rounded-2xl border-teal-500" href="{{ route('user-sounds') }}">
+                    <a class="w-14 h-14 grid place-items-center cursor-pointer border rounded-full  border-teal-500" href="{{ route('user-sounds') }}">
                         <img src="{{ asset('playlist-duotone.png') }}" class="w-14 h-auto md:w-24 " alt="Description of image">
                     </a>
-                </div>
             </footer>
         </div>
         <script src="{{asset('js/modal.js')}}"></script>

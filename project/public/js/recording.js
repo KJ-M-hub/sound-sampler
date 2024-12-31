@@ -72,10 +72,11 @@ if (navigator.mediaDevices.getUserMedia) {
       audio.setAttribute("controls", "");
       audio.classList.add("w-full", "rounded"); // 追加
       deleteButton.textContent = "delete"; // テキストを"削除"に変更
-      deleteButton.className = "delete";
-      deleteButton.classList.add("mr-2","w-16","bg-red-500", "rounded"); // 追加
+      deleteButton.className = "delete rounded";
+      deleteButton.classList.add("mr-2","w-16", "rounded"); // 追加
+      deleteButton.style.backgroundColor = "red"; // 背景色を赤に変更
       downloadButton.textContent = "save"; // テキストを"保存"に変更
-      downloadButton.className = "download w-16 ml-4 bg-cyan-500 rounded"; // クラスを追加
+      downloadButton.className = "download w-16 ml-2 bg-cyan-400 rounded"; // クラスを追加
 
       if (clipName === null) {
         clipLabel.textContent = "My unnamed clip";
@@ -84,7 +85,7 @@ if (navigator.mediaDevices.getUserMedia) {
       }
 
       // ボタン用の親要素にflexクラスを追加
-      buttonContainer.classList.add("flex", "justify-end", "mt-2"); // ボタンを右端に揃えるためのクラスを追加
+      buttonContainer.classList.add("flex", "justify-end", "my-4"); // ボタンを右端に揃えるためのクラスを追加
       buttonContainer.appendChild(deleteButton); // ボタンを追加
       buttonContainer.appendChild(downloadButton); // Downloadボタンを追加
 

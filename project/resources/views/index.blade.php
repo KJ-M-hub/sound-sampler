@@ -41,9 +41,9 @@
         {{-- main content --}}
         <div class="p-4">
             {{-- recording sounds --}}
-            @foreach($sounds as $sound)
+            @foreach($sounds->reverse() as $sound)
                 <article class="clip mb-4 p-4 border border-1 border-teal-400 rounded z-0" data-sound-id="{{ $sound->id }}">
-                    <p class="clip-label text-gray-200 font-noto-sans-jp">{{ $sound->title }}</p>
+                    <p class="ml-2 mb-2 clip-label text-gray-200 font-noto-sans-jp">{{ $sound->title }}</p>
                     {{-- <audio controls>
                         <source src="{{ asset('storage/' . $sound->file_path) }}" type="{{ $sound->mime_type }}">
                         Your browser does not support the audio element.
@@ -54,22 +54,22 @@
                             Your browser does not support the audio element.
                         </audio>
                     </div>
-                    <a href="#_" onclick="document.getElementById('audio-{{ $sound->id }}').play();" class="play-button w-8 h-4 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+                    <a href="#_" onclick="document.getElementById('audio-{{ $sound->id }}').play();" class="play-button w-8 h-4 mx-1 my-2 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
                         <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-amber-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
                         <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                         <span class="relative">play</span>
                     </a>
-                    <a href="#_" onclick="document.getElementById('audio-{{ $sound->id }}').pause();" class="stop-button w-8 h-4 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+                    <a href="#_" onclick="document.getElementById('audio-{{ $sound->id }}').pause();" class="stop-button w-8 h-4 mx-1 my-2 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
                         <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-fuchsia-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
                         <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                         <span class="relative">stop</span>
                     </a>
-                    <a href="#_" data-sound-id="{{ $sound->id }}" class="delete w-8 h-4 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+                    <a href="#_" data-sound-id="{{ $sound->id }}" class="delete w-8 h-4 mx-1 my-2 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
                         <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-red-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
                         <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                         <span class="relative">delete</span>
                     </a>
-                    <a href="#_" data-sound-id="{{ $sound->id }}" class="select open-modal w-8 h-4 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+                    <a href="#_" data-sound-id="{{ $sound->id }}" class="select open-modal w-8 h-4 mx-1 my-2 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
                         <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
                         <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                         <span class="relative">select</span>
@@ -93,31 +93,31 @@
             @endphp
 
             <div class="">
-                <div class="text-gray-200 font-noto-sans-jp">
+                <div class=" my-4 text-gray-200 font-noto-sans-jp">
                     <h2>効果音 提供元</h2>
                     <p>音楽素材MusMus (https://musmus.main.jp)</p>
                     <p>オトロジック (https://otologic.jp)</p>
                 </div>
                 @foreach(array_slice($soundFiles, 0, 100) as $soundFile) <!-- 最初の10個の音源を表示 -->
                     <article class="clip mb-4 p-4 border rounded z-0">
-                        <p class="clip-label text-gray-200 font-noto-sans-jp">{{ pathinfo($soundFile, PATHINFO_FILENAME) }}</p>
+                        <p class="ml-2 mb-2 clip-label text-gray-200 font-noto-sans-jp">{{ pathinfo($soundFile, PATHINFO_FILENAME) }}</p>
                         <div class="flex justify-center">
                             <audio id="audio-{{ $soundFile }}" class="w-full">
                                 <source src="{{ asset('storage/sounds/' . $soundFile) }}" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
                         </div>
-                        <a href="#_" onclick="document.getElementById('audio-{{ $soundFile }}').play();" class="play-button w-8 h-4 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+                        <a href="#_" onclick="document.getElementById('audio-{{ $soundFile }}').play();" class="play-button w-8 h-4 mx-1 my-2 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
                             <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-amber-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
                             <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                             <span class="relative">play</span>
                         </a>
-                        <a href="#_" onclick="document.getElementById('audio-{{ $soundFile }}').pause();" class="w-8 h-4 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+                        <a href="#_" onclick="document.getElementById('audio-{{ $soundFile }}').pause();" class="w-8 h-4 mx-1 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
                             <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-fuchsia-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
                             <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                             <span class="relative">stop</span>
                         </a>
-                        <a href="#_" data-file-name="{{ $soundFile }}" class="save-to-db w-8 h-4 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
+                        <a href="#_" data-file-name="{{ $soundFile }}" class="save-to-db w-8 h-4 mx-1 my-1 relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group">
                             <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-cyan-500 rounded-full group-hover:w-56 group-hover:h-56"></span>
                             <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                             <span class="relative">save</span>
