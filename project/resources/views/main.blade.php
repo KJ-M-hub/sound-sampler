@@ -2,11 +2,10 @@
     <x-slot name="slot" class="">
             
         {{-- main content --}}
-        <div class="grid grid-col max-w-[1000px] mx-auto">
+        <div class="flex flex-col max-w-[1000px] mx-auto">
             {{-- modal window --}}
             <div id="modal" class=" fixed top-0 left-0 w-full h-full text-center bg-gray-300 bg-opacity-50 transition box-border invisible">
                 <div id="modal-container" class="relative inline-block align-middle top-1/2 -translate-y-1/2 w-full h-full pt-10">
-                    
                     <div id="modal-content" class="relative inline-block w-3/4 h-3/4 bg-gray-300  rounded-md overflow-auto">
                         <div id="modal-close" class="z-10 absolute flex right-3 text-3xl cursor-pointer">×</div>
                         <div class="p-2">
@@ -18,7 +17,7 @@
             {{-- header --}}
             <header class="bg-gray-900 flex px-0 justify-between">
                
-                <div class="max-w-7xl mx-auto py-1 px-1 sm:px-6 lg:px-8 text-2xl sm:text-6xl text-center text-gray-200 lobster-regular">
+                <div class="mx-auto pl-8  text-5xl sm:text-6xl sm:pl-16 md:text-7xl md:pl-16 text-gray-200 lobster-regular">
                     Sound Sampler
                 </div>
 
@@ -97,19 +96,20 @@
                 @endphp
                 <style>
                     .sound-button {
-                        width: 45%; /* 2列表示のための幅設定 */
+                        width: 46%; /* 2列表示のための幅設定 */
                         margin: 2%; /* 各ボタンの間隔を設定 */
+                        padding:rem;
                     }
                 </style>
-                <div class="flex flex-wrap mx-12 my-4">
+                <div class="flex flex-wrap max-w-[500px] mx-auto px-4">
                     @for ($i = 1; $i <= 8; $i++)
-                            <div  class="sound-button p-1" data-key="{{ $i }}" data-sound-id="">
+                            <div  class="sound-button" data-key="{{ $i }}" data-sound-id="">
                                 <div id="soundBtm-{{ $i }}" class=" h-auto rounded aspect-square bg-gradient-to-b from-teal-500 from-0% via-teal-500 via-50% to-teal-400 to-100% shadow-inner shadow-slate-100 border  border-gray-300">
                                     <div class="w-1/3 m-1 mb-3 p-1 bg-gray-300 shadow rounded text-wrap">
                                         <p class="text-xl text-center font-noto-sans-jp">{{ $keyMap[$i] }}</p>
                                         <p class="text-center font-noto-sans-jp">key</p>
                                     </div>
-                                    <div class="text-sm md:text-2xl text-center truncate font-noto-sans-jp"><Q id="title-sound{{ $i }}" class="">Loading...</Q></div>
+                                    <div class="mt-8 xs:text-xl xs:mt-4 sm:text-xl sm:mt-8 md:text-2xl md:mt-12 text-center truncate font-noto-sans-jp"><Q id="title-sound{{ $i }}" class="">Loading...</Q></div>
                                     <audio id="audio-sound{{ $i }}" class="hidden"></audio>
                                 </div>
                             </div>
@@ -117,11 +117,11 @@
                 </div>
 
             {{-- footer --}}
-            <footer class="grid grid-cols-2 mx-8 p-1 gap-8 justify-items-center">
-                    <a  class="w-14 h-14 open-modal grid place-items-center cursor-pointer border rounded-full  border-teal-500">
+            <footer class="flex flex-wrap mx-8 my-4 p-1 gap-24 justify-center sm:gap-32 sm:my-8 md:gap-40">
+                    <a  class="w-14 h-14 md:w-24 md:h-24 open-modal cursor-pointer border rounded-full  border-teal-500">
                         <img src="{{ asset('microphone-duotone.png') }}" class=" w-14 h-auto md:w-24 " alt="Description of image">
                     </a>
-                    <a class="w-14 h-14 grid place-items-center cursor-pointer border rounded-full  border-teal-500" href="{{ route('user-sounds') }}">
+                    <a class="w-14 h-14 md:w-24 md:h-24 cursor-pointer border rounded-full  border-teal-500" href="{{ route('user-sounds') }}">
                         <img src="{{ asset('playlist-duotone.png') }}" class="w-14 h-auto md:w-24 " alt="Description of image">
                     </a>
             </footer>

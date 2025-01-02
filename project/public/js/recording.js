@@ -31,6 +31,7 @@ if (navigator.mediaDevices.getUserMedia) {
     const mediaRecorder = new MediaRecorder(stream, options);
 
     visualize(stream);
+    
 
     record.onclick = function () {
       mediaRecorder.start();
