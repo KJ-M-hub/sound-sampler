@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for project-wild-forest-9460 on 2025-01-02T22:06:20+09:00
+# fly.toml app configuration file generated for soundsampler on 2025-01-04T16:46:34+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'project-wild-forest-9460'
-primary_region = 'syd'
+app = 'soundsampler'
+primary_region = 'nrt'
 console_command = 'php /var/www/html/artisan tinker'
 
 [build]
@@ -13,11 +13,32 @@ console_command = 'php /var/www/html/artisan tinker'
     PHP_VERSION = '8.2'
 
 [env]
+  APP_DEBUG = 'true'
   APP_ENV = 'production'
+  APP_FAKER_LOCALE = 'ja_JP'
+  APP_FALLBACK_LOCALE = 'en'
+  APP_KEY = 'base64:ECx9EMUN0aQRApwiL9F0OLJ+xWKNr/i7hG1N0zjDZmQ='
+  APP_LOCALE = 'ja'
+  APP_MAINTENANCE_DRIVER = 'file'
+  APP_NAME = 'SoundSampler'
+  APP_TIMEZONE = 'Asia/Tokyo'
+  APP_URL = 'http://localhost'
+  DB_CONNECTION = 'pgsql'
+  DB_DATABASE = 'laravel'
+  DB_HOST = 'pgsql'
+  DB_PASSWORD = 'password'
+  DB_PORT = '5432'
+  DB_USERNAME = 'sail'
+  PGADMIN_EMAIL = 'rfb0920@gmail.com'
+  PGADMIN_PASSWORD = 'up.K_aZKkD4E-*o'
   LOG_CHANNEL = 'stderr'
   LOG_LEVEL = 'info'
   LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
+  SESSION_DOMAIN = 'null'
   SESSION_DRIVER = 'cookie'
+  SESSION_ENCRYPT = 'false'
+  SESSION_LIFETIME = '120'
+  SESSION_PATH = '/'
   SESSION_SECURE_COOKIE = 'true'
 
 [http_service]

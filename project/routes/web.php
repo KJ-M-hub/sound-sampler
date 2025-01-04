@@ -37,7 +37,7 @@ Route::get('/sounds/{id}', [SoundSamplerController::class, 'getSound'])
 ->name('get-sound');
 
 Route::post('/save-soundMp3', [SoundSamplerController::class, 'saveSoundMp3'])
-->name('save-sound');
+->name('save-soundMp3');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
