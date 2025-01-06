@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sounds', function (Blueprint $table) {
-            $table->dropColumn('mime_type'); // 既存のカラムを削除
+            if (Schema::hasColumn('sounds', 'mime_type')) {
+                $table->dropColumn('mime_type'); // 既存のカラムを削除
+            }
             $table->string('mime_type')->nullable(); // MIMEタイプ用にstring型を使用
         });
     }
@@ -23,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('sounds', function (Blueprint $table) {
-            //
+            $table->dropColumn('mime_type');
         });
     }
 };
