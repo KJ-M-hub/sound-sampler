@@ -2,14 +2,14 @@
 ## 録音機能
 このWebアプリはブラウザ上で音声の録音ができ、保存・再生も行えます。
 
-![スクリーンショット 2024-12-22 23 35 34](https://github.com/user-attachments/assets/505b9008-b28a-4fe9-b126-0cfbb375dbc5)
+![スクリーンショット 2025-01-07 1 02 19](https://github.com/user-attachments/assets/a3de3973-500a-4f0a-b35e-58bf45ff82e2)
 
 ## オーディオファイル一覧表示機能
 保存した音声は一覧で表示されます。
 また、プリセットとして効果音も用意しています。（音楽素材MusMus様 [https://musmus.main.jp],
 オトロジック様 [https://otologic.jp] より引用させて頂いております。）
 
-![スクリーンショット 2024-12-22 23 40 02](https://github.com/user-attachments/assets/c7612714-d553-4b09-9d5c-58826e71c0da)
+![スクリーンショット 2025-01-07 1 05 44](https://github.com/user-attachments/assets/2bce5dfb-fcd7-421f-80b1-063056f28ab5)
 
 
 ## Sample Pad機能
@@ -17,8 +17,8 @@
 
 自分の好きなタイミングで再生することができます。気分はサウンドディレクター！
 
-![スクリーンショット 2024-12-22 23 34 44](https://github.com/user-attachments/assets/2cfa6e7c-e996-4a74-a3d8-484be6a20df3)
-![スクリーンショット 2024-12-22 23 34 33](https://github.com/user-attachments/assets/9fcc89ef-9c8f-465a-b1db-ed82017d6c38)
+![スクリーンショット 2025-01-07 1 08 34](https://github.com/user-attachments/assets/17a0eefe-330d-42d0-be6f-a9400738b8c9)
+![スクリーンショット 2025-01-07 1 08 51](https://github.com/user-attachments/assets/814066ef-8b95-4f15-a95f-89a0d5755b90)
 
 
 プレゼンテーションやイベントの司会進行時など様々な状況でこのアプリを使ってみてください。
